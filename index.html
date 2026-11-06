@@ -1,1 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Treino Trinca: 30 dias</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#EEF2F6;--surface:#FFFFFF;--ink:#13202D;--muted:#566474;--line:#D5DDE6;
+  --accent:#1B4FE0;--accent-ink:#FFFFFF;--done:#E3F4EA;--done-ink:#15683A;
+  --head:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1720;--surface:#17212C;--ink:#E8EEF4;--muted:#9AA8B7;--line:#2A3745;
+    --accent:#6C93FF;--accent-ink:#0B1220;--done:#143323;--done-ink:#7BD9A0;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1720;--surface:#17212C;--ink:#E8EEF4;--muted:#9AA8B7;--line:#2A3745;
+  --accent:#6C93FF;--accent-ink:#0B1220;--done:#143323;--done-ink:#7BD9A0;color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+header{padding:28px 20px 8px;max-width:680px;margin:0 auto}
+h1{font-family:var(--head);font-size:44px;line-height:1;margin:0 0 6px;letter-spacing:.2px}
+header p{margin:0;color:var(--muted);max-width:52ch}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-top:16px}
+nav div{display:flex;gap:6px;max-width:680px;margin:0 auto;padding:10px 20px;overflow-x:auto}
+nav button{flex:1 0 auto;font:600 15px var(--body);padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;min-height:44px}
+nav button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+main{max-width:680px;margin:0 auto;padding:20px}
+.bar{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.bar h2{font-family:var(--head);font-size:30px;margin:0}
+.count{color:var(--muted);font-weight:500}
+.meter{height:6px;background:var(--line);border-radius:3px;margin-bottom:18px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+.ex{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.ex.done{background:var(--done);border-color:transparent}
+.ex input{grid-row:span 3;width:24px;height:24px;margin-top:3px;accent-color:var(--accent)}
+.ex h3{margin:0;font-size:18px;font-weight:600}
+.ex.done h3{color:var(--done-ink)}
+.ex .meta{color:var(--muted);font-size:15px;margin:0}
+.ex a{justify-self:start;margin-top:6px;font-weight:600;color:var(--accent);text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:1px}
+.tip{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:12px 16px;margin:0 0 18px;color:var(--muted);font-size:15px}
+.guide h3{font-family:var(--head);font-size:24px;margin:22px 0 6px}
+.guide p,.guide li{max-width:62ch}
+.guide ul{padding-left:20px;margin:6px 0}
+footer{max-width:680px;margin:0 auto;padding:4px 20px 32px;color:var(--muted);font-size:14px}
+.ex input{grid-row:span 6}
+.fig{grid-column:2;margin:8px 0 4px;cursor:pointer}
+.fig svg{width:100%;max-width:340px;height:auto;display:block;background:var(--bg);border-radius:8px;border:1px solid var(--line)}
+.fig polyline,.fig line{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.fb{stroke:var(--ink);stroke-width:4}.fa{stroke:var(--accent);stroke-width:4.5}.fq{stroke:var(--muted);stroke-width:2}
+.fc{stroke:var(--muted);stroke-width:1.2;stroke-dasharray:3 3}
+.fh{fill:var(--surface);stroke:var(--ink);stroke-width:3.5}.fw{fill:var(--accent)}
+.cue{margin:6px 0 0;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Treino Trinca</h1>
+  <p>3 treinos por semana, parte de cima do corpo, 40 a 60 minutos. Meta: 89 kg para 85 kg em 30 dias.</p>
+</header>
+<nav><div role="tablist" id="tabs"></div></nav>
+<main id="view"></main>
+<footer>Não é orientação médica. Se tiver lesão ou condição de saúde, consulte um profissional antes de começar.</footer>
+
+<script>
+var yt=function(q){return "https://www.youtube.com/results?search_query="+encodeURIComponent("como fazer "+q)};
+var DAYS={
+  segunda:{label:"Segunda",title:"Treino de segunda",ex:[
+    ["Supino reto com halteres","3x8-12","supino reto com halteres"],
+    ["Puxada frontal","3x8-12","puxada frontal na polia"],
+    ["Desenvolvimento com halteres","3x8-12","desenvolvimento com halteres sentado"],
+    ["Remada baixa","3x8-12","remada baixa na polia"],
+    ["Tríceps na corda","3x10-12","tríceps na corda polia"],
+    ["Rosca direta","3x10-12","rosca direta com barra"],
+    ["Abdominal","3x15","abdominal supra"]]},
+  quarta:{label:"Quarta",title:"Treino de quarta",ex:[
+    ["Supino inclinado com halteres","3x8-12","supino inclinado com halteres"],
+    ["Remada curvada","3x8-12","remada curvada com barra"],
+    ["Elevação lateral","3x10-12","elevação lateral com halteres"],
+    ["Crucifixo (máquina ou halteres)","3x10-12","crucifixo reto com halteres"],
+    ["Tríceps testa","3x10-12","tríceps testa"],
+    ["Rosca martelo","3x10-12","rosca martelo"],
+    ["Prancha","3x30-45 s","prancha abdominal"]]},
+  sexta:{label:"Sexta",title:"Treino de sexta",ex:[
+    ["Supino na máquina ou flexão de braço","3x8-12","supino máquina"],
+    ["Barra fixa (ou pulldown)","3x6-10","barra fixa para iniciantes"],
+    ["Desenvolvimento Arnold","3x8-12","desenvolvimento arnold"],
+    ["Remada unilateral","3x8-12","remada unilateral serrote"],
+    ["Mergulho no banco ou tríceps francês","3x10-12","tríceps francês com halter"],
+    ["Rosca concentrada ou Scott","3x10-12","rosca concentrada"],
+    ["Abdominal oblíquo","3x15 por lado","abdominal oblíquo"]]}
+};
+var order=["segunda","quarta","sexta","guia"];
+var store={};
+function load(){try{store=JSON.parse(localStorage.getItem("trinca")||"{}")}catch(e){store={}}}
+function save(){try{localStorage.setItem("trinca",JSON.stringify(store))}catch(e){}}
+function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!==undefined)e.innerHTML=h;return e}
+
+function renderTabs(cur){
+  var box=document.getElementById("tabs");box.innerHTML="";
+  order.forEach(function(k){
+    var b=el("button","",k==="guia"?"Guia":DAYS[k].label);
+    b.setAttribute("role","tab");b.setAttribute("aria-selected",k===cur?"true":"false");
+    b.onclick=function(){location.hash=k};
+    box.appendChild(b);
+  });
+}
+function renderDay(k){
+  var d=DAYS[k],v=document.getElementById("view");v.innerHTML="";
+  var bar=el("div","bar");bar.appendChild(el("h2","",d.title));
+  var cnt=el("span","count");bar.appendChild(cnt);v.appendChild(bar);
+  var m=el("div","meter","<i></i>");v.appendChild(m);
+  v.appendChild(el("p","tip","3 séries por exercício, descanso de 45 a 60 segundos. Use uma carga que deixe 1 ou 2 repetições de reserva. Marque cada exercício ao terminar."));
+  function update(){
+    var n=0;d.ex.forEach(function(x,i){if(store[k+i])n++});
+    cnt.textContent=n+" de "+d.ex.length;
+    m.firstChild.style.width=(n/d.ex.length*100)+"%";
+  }
+  d.ex.forEach(function(x,i){
+    var key=k+i,row=el("div","ex"+(store[key]?" done":""));
+    var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!store[key];
+    cb.setAttribute("aria-label","Concluir "+x[0]);
+    cb.onchange=function(){store[key]=cb.checked;row.classList.toggle("done",cb.checked);save();update()};
+    row.appendChild(cb);
+    row.appendChild(el("h3","",x[0]));
+    row.appendChild(el("p","meta",x[1]));
+    var a=el("a","","Ver vídeo");a.href=yt(x[2]);a.target="_blank";a.rel="noopener noreferrer";
+    row.appendChild(a);v.appendChild(row);
+  });
+  var r=el("button","","Limpar marcações");
+  r.style.cssText="margin-top:8px;font:500 14px var(--body);background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:10px 14px;cursor:pointer;min-height:44px";
+  r.onclick=function(){d.ex.forEach(function(x,i){delete store[k+i]});save();renderDay(k)};
+  v.appendChild(r);update();
+}
+function renderGuide(){
+  var v=document.getElementById("view");
+  v.innerHTML='<div class="guide">'+
+  '<h2 style="font-family:var(--head);font-size:30px;margin:0 0 6px">Guia dos 30 dias</h2>'+
+  '<p>Seu treino não usa as pernas, então ele gasta menos calorias. O cardio e a alimentação fazem a diferença na balança.</p>'+
+  '<h3>Semana</h3><ul><li>Segunda, quarta e sexta: musculação (48 horas entre os treinos).</li>'+
+  '<li>Terça e quinta: 30 a 40 minutos de caminhada inclinada ou bike.</li>'+
+  '<li>Todos os dias: 8 a 10 mil passos.</li>'+
+  '<li>Sábado e domingo: descanso ativo.</li></ul>'+
+  '<h3>Alimentação</h3><ul><li>Déficit de 500 a 700 kcal por dia.</li>'+
+  '<li>Proteína entre 140 e 175 g por dia.</li>'+
+  '<li>Pelo menos 2,5 litros de água por dia.</li>'+
+  '<li>Dormir de 7 a 8 horas.</li></ul>'+
+  '<h3>Sobre a meta</h3><p>Perder 4 kg em 30 dias é agressivo: parte da queda inicial é líquido. Se chegar em 86 ou 87 kg, o resultado ainda é muito bom. Pese-se sempre no mesmo dia e horário, de preferência em jejum.</p>'+
+  '<h3>Progressão</h3><p>Quando fizer as 3 séries no topo da faixa de repetições, aumente a carga na semana seguinte.</p></div>';
+}
+function route(){
+  var k=(location.hash||"").replace("#","");
+  if(order.indexOf(k)<0)k="segunda";
+  renderTabs(k);
+  if(k==="guia")renderGuide();else renderDay(k);
+}
+var R=Math.PI/180,LT=34,LU=19,LF=18,LH=24,NS="http://www.w3.org/2000/svg",sims=[];
+function V(p,a,l){return[p[0]+l*Math.cos(a*R),p[1]+l*Math.sin(a*R)]}
+function lerp(a,b,s){return a.map(function(v,i){return v+(b[i]-v)*s})}
+var BN=[[24,66,98,66],[30,66,30,78],[90,66,90,78]],SE=[[40,82,62,82],[52,82,52,102]];
+var P={
+flat:{h:[46,62],A:[0,270,270],B:[0,135,270],g:[-160,100],fl:78,q:BN},
+incl:{h:[44,66],A:[-35,270,270],B:[-35,135,270],g:[-165,100],fl:84,q:[[34,70,56,70],[46,70,78,47],[44,70,44,84],[78,50,78,84]]},
+seat:{h:[50,60],A:[-90,0,0],B:[-90,160,0],g:[0,90],fl:84,q:[[40,64,62,64],[52,64,52,84]]},
+over:{h:[50,78],A:[-90,-90,-90],B:[-90,90,-90],g:[0,90],fl:102,q:SE},
+pull:{H:[70,10],A:[-90,-90,-90],B:[-90,20,-100],g:[95,170],q:[[40,10,100,10]]},
+brow:{h:[46,52],A:[-20,90,90],B:[-20,160,90],g:[70,100],fl:98,q:[]},
+curl:{h:[60,56],A:[-90,85,90],B:[-90,85,-70],g:[90,90],fl:104,q:[]},
+curlseat:{h:[50,64],A:[-60,90,90],B:[-60,90,-60],g:[0,90],fl:88,q:[[40,68,62,68],[52,68,52,88]]},
+push:{h:[50,56],A:[-90,90,-10],B:[-90,90,85],g:[90,90],fl:104,q:[[72,0,72,6]],c:[72,2]},
+french:{h:[50,78],A:[-90,-90,270],B:[-90,-90,120],g:[0,90],fl:102,q:SE},
+crunch:{h:[60,66],A:[0,-40,150],B:[-42,-60,150],g:[-125,105],fl:70,q:[]},
+plank:{h:[62,70],A:[-12,90,0],B:[-14,90,0],g:[168,168],fl:83,q:[]},
+lat:{k:"S",A:[0,82,82],B:[0,0,0],q:[]},
+fly:{k:"L",A:[0,-80,-85],B:[0,25,10],q:[[50,74,90,74]]}};
+P.skull=Object.assign({},P.flat,{A:[0,-95,-90],B:[0,-95,20]});
+P.pulld=Object.assign({},P.over,{c:[70,2],q:SE.concat([[40,2,100,2]])});
+P.row=Object.assign({},P.seat,{c:[136,28]});
+var PAT={segunda:["flat","pulld","over","row","push","curl","crunch"],quarta:["incl","brow","lat","fly","skull","curl","plank"],sexta:["seat","pull","over","brow","french","curlseat","crunch"]};
+var CUE={flat:"Desça a barra até o peito com controle e empurre sem tirar o quadril do banco.",incl:"Cotovelos a 45° do tronco; empurre na direção da parte alta do peito.",seat:"Costas apoiadas; empurre sem travar os cotovelos.",row:"Puxe os cotovelos para trás juntando as escápulas; volte devagar.",over:"Abdômen firme; empurre acima da cabeça sem arquear a lombar.",pulld:"Puxe a barra até o peito levando os cotovelos para baixo.",pull:"Suba até o queixo passar da barra e desça com controle.",brow:"Tronco inclinado e costas retas; puxe os cotovelos em direção ao quadril.",curl:"Cotovelos colados ao corpo; só o antebraço se move.",curlseat:"Cotovelo apoiado na coxa; suba devagar e controle a descida.",push:"Cotovelos fixos ao lado do corpo; estenda até embaixo e volte.",skull:"Só o antebraço se move; cotovelos apontando para cima.",french:"Cotovelos parados perto da cabeça; estenda para cima e volte.",crunch:"Suba o tronco sem puxar o pescoço. No oblíquo, gire levando o cotovelo ao joelho oposto.",plank:"Corpo em linha reta e abdômen contraído; segure o tempo indicado.",lat:"Braços levemente flexionados; suba até a altura dos ombros.",fly:"Abra os braços com os cotovelos levemente dobrados e volte juntando acima do peito."};
+function S(t,at,par){var e=document.createElementNS(NS,t);for(var k in at)e.setAttribute(k,at[k]);if(par)par.appendChild(e);return e}
+function pose(p,s){var a=lerp(p.A,p.B,s),sh,el,ha,hip;
+ if(p.H){ha=p.H;el=V(ha,a[2]+180,LF);sh=V(el,a[1]+180,LU);hip=V(sh,a[0]+180,LT)}
+ else{hip=p.h;sh=V(hip,a[0],LT);el=V(sh,a[1],LU);ha=V(el,a[2],LF)}
+ var kn=V(hip,p.g[0],LH);return{hip:hip,sh:sh,el:el,ha:ha,kn:kn,ft:V(kn,p.g[1],LH),hd:V(sh,a[0],11)}}
+function fpose(p,s){var a=lerp(p.A,p.B,s),r=[82,p.k==="L"?60:38],e=V(r,a[1],LU),h=V(e,a[2],LF);
+ return{r:[r,e,h],l:[[58,r[1]],[140-e[0],e[1]],[140-h[0],h[1]]]}}
+function pt(c,p){c.setAttribute("cx",p[0]);c.setAttribute("cy",p[1])}
+function mkFig(p){var svg=S("svg",{viewBox:"0 0 140 120",role:"img","aria-label":"Animação do movimento"}),m={svg:svg,p:p};
+ if(p.fl)S("line",{x1:4,x2:136,y1:p.fl,y2:p.fl,class:"fq"},svg);
+ p.q.forEach(function(q){S("line",{x1:q[0],y1:q[1],x2:q[2],y2:q[3],class:"fq"},svg)});
+ if(p.c)m.cb=S("line",{x1:p.c[0],y1:p.c[1],x2:p.c[0],y2:p.c[1],class:"fc"},svg);
+ if(p.k){
+  if(p.k==="S"){S("circle",{cx:70,cy:24,r:7,class:"fh"},svg);S("polyline",{points:"58,38 82,38",class:"fb"},svg);S("line",{x1:70,y1:38,x2:70,y2:80,class:"fb"},svg);S("polyline",{points:"63,104 70,80 77,104",class:"fb"},svg)}
+  else S("line",{x1:58,y1:64,x2:82,y2:64,class:"fb",style:"stroke-width:14"},svg);
+  m.ra=S("polyline",{class:"fa"},svg);m.la=S("polyline",{class:"fa"},svg);m.wr=S("circle",{r:3.2,class:"fw"},svg);m.wl=S("circle",{r:3.2,class:"fw"},svg)}
+ else{m.lg=S("polyline",{class:"fb"},svg);m.tr=S("line",{class:"fb"},svg);m.hd=S("circle",{r:6,class:"fh"},svg);m.ar=S("polyline",{class:"fa"},svg);m.wr=S("circle",{r:3.2,class:"fw"},svg)}
+ upd(m,0);return m}
+function upd(m,s){var p=m.p,o,f;
+ if(p.k){f=fpose(p,s);m.ra.setAttribute("points",f.r.join(" "));m.la.setAttribute("points",f.l.join(" "));pt(m.wr,f.r[2]);pt(m.wl,f.l[2]);return}
+ o=pose(p,s);m.lg.setAttribute("points",[o.hip,o.kn,o.ft].join(" "));
+ m.tr.setAttribute("x1",o.hip[0]);m.tr.setAttribute("y1",o.hip[1]);m.tr.setAttribute("x2",o.sh[0]);m.tr.setAttribute("y2",o.sh[1]);
+ pt(m.hd,o.hd);m.ar.setAttribute("points",[o.sh,o.el,o.ha].join(" "));pt(m.wr,o.ha);
+ if(m.cb){m.cb.setAttribute("x2",o.ha[0]);m.cb.setAttribute("y2",o.ha[1])}}
+function tick(now){var raw=.5-.5*Math.cos(now*Math.PI*2/3200),s=Math.min(1,Math.max(0,(raw-.08)/.84));
+ sims=sims.filter(function(m){return m.svg.isConnected});
+ sims.forEach(function(m){m.s=s;upd(m,m.fz===undefined?s:m.fz)});requestAnimationFrame(tick)}
+var _rd=renderDay;
+renderDay=function(k){_rd(k);sims=[];
+ var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches,tp=document.querySelector(".tip");
+ if(tp)tp.textContent+=" As animações são esquemáticas (bonecos). Toque na figura para pausar ou continuar.";
+ document.querySelectorAll(".ex").forEach(function(r,i){
+  var key=PAT[k][i],m=mkFig(P[key]),d=el("div","fig");
+  d.appendChild(m.svg);d.appendChild(el("p","cue",CUE[key]));
+  if(reduce)m.fz=0;
+  d.setAttribute("role","button");d.tabIndex=0;
+  d.onclick=function(){m.fz=m.fz===undefined?(m.s||0):undefined};
+  d.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();d.onclick()}};
+  r.insertBefore(d,r.querySelector("a"));sims.push(m);
+  r.querySelector("a").textContent="Vídeo real no YouTube (opcional)"});
+};
+requestAnimationFrame(tick);
+load();window.addEventListener("hashchange",route);route();
+</script>
+</body>
+</html>
 
